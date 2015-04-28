@@ -2,9 +2,9 @@ package controller
 
 import (
 	// "fmt"
+	"github.com/DrWrong/finalProject_UI/thrift_interface"
+	"github.com/DrWrong/finalProject_UI/utils"
 	"github.com/Unknwon/macaron"
-	"ui/thrift_interface"
-	"ui/utils"
 )
 
 func Plain(ctx *macaron.Context) string {

@@ -2,9 +2,9 @@ package utils
 
 import (
 	"git.apache.org/thrift.git/lib/go/thrift"
+	"github.com/DrWrong/finalProject_UI/thrift_interface"
 	log "github.com/Sirupsen/logrus"
 	"time"
-	"ui/thrift_interface"
 )
 
 var (

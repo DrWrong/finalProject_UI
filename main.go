@@ -3,13 +3,13 @@ package main
 import (
 	// "fmt"
 	"flag"
+	"github.com/DrWrong/finalProject_UI/controller"
+	"github.com/DrWrong/finalProject_UI/utils"
 	log "github.com/Sirupsen/logrus"
 	"github.com/Unknwon/macaron"
 	"github.com/macaron-contrib/pongo2"
 	"os"
 	"runtime"
-	"ui/controller"
-	"ui/utils"
 	// "tech_oa/middleware/binding"
 )
 
