@@ -1,3 +1,18 @@
+// Copyright 2015 DrWrong
+//
+// Licensed under the Apache License, Version 2.0 (the "License"): you may
+// not use this file except in compliance with the License. You may obtain
+// a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+// WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+// License for the specific language governing permissions and limitations
+// under the License.
+// the UI service for the composition system.
+// the service is build on the web framework "Macaron"
 package main
 
 import (
@@ -13,6 +28,8 @@ import (
 	// "tech_oa/middleware/binding"
 )
 
+// return a new Macaron instance
+//  the configure to use pongo2 as a template engine
 func newMacaron() *macaron.Macaron {
 	m := macaron.Classic()
 	m.Use(pongo2.Pongoer(pongo2.Options{
@@ -22,6 +39,7 @@ func newMacaron() *macaron.Macaron {
 
 }
 
+// the url mapping of the system, it specify the process function of each http request.
 func runWeb() {
 	m := newMacaron()
 	// bindIgnErr := binding.BindIgnErr
@@ -36,6 +54,8 @@ func runWeb() {
 	m.Run()
 }
 
+// the entrance of the program, it read a configure file and initialize the configure.
+// then it start the web service.
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	pwd, _ := os.Getwd()

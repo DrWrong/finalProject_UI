@@ -12,6 +12,8 @@ var (
 	securityClient *thrift_interface.SecureServiceClient
 )
 
+// Get an available thrift weather client to connect to the thrift weather info service
+
 func GetWeatherClient() (
 	*thrift_interface.CityWeatherInfoServiceClient, error) {
 	var (
@@ -19,12 +21,14 @@ func GetWeatherClient() (
 		res       bool
 		transport thrift.TTransport
 	)
+	// if weatherClient exist test if it still available by a ping operation.
 	if weatherClient != nil {
 		res, err = weatherClient.Ping(RequestHeader())
 		if err != nil && res {
 			return weatherClient, nil
 		}
 	}
+	// create a new weatherClient
 	transportFactory := thrift.NewTFramedTransportFactory(thrift.NewTTransportFactory())
 	protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
 	transport, err = thrift.NewTSocket(IniConf.String("weather_server"))
@@ -43,6 +47,7 @@ func GetWeatherClient() (
 	return weatherClient, nil
 }
 
+//  Get an available thrift security client to connect to the thrift security service.
 func GetSecurityClient() (
 	*thrift_interface.SecureServiceClient, error) {
 	var (
@@ -73,6 +78,8 @@ func GetSecurityClient() (
 	return securityClient, nil
 }
 
+// Generate an request header with a unique RequestId
+// the RequestId is used to track each RPC
 func RequestHeader() *thrift_interface.CommonRequest {
 	t := int32(time.Now().Unix())
 	return &thrift_interface.CommonRequest{
